@@ -40,11 +40,30 @@ main blockquote {
 }
 
 header {
+  position: relative;
   padding: 1.25rem 2rem 0 2rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 0.6s ease;
+}
+
+.visit-counter {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  display: flex;
+  gap: 0.6rem;
+  background: rgba(20,30,50,0.55);
+  color: #fff;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  backdrop-filter: blur(2px);
+}
+
+.visit-counter-item strong {
+  font-weight: 700;
 }
 
 header.sky-daytime {
