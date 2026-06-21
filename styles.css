@@ -249,6 +249,8 @@ main.wide-page {
 
 .docx-content h3:first-of-type {
   border-top: none;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .docx-content h4 {
