@@ -39,4 +39,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   applySkyTheme();
   setInterval(applySkyTheme, 5 * 60 * 1000);
+
+  var counterNamespace = "tinghao-liu-mechanical-webpage";
+  var today = new Date();
+  var todayKey = "visits-" + today.getFullYear() + "-" +
+    String(today.getMonth() + 1).padStart(2, "0") + "-" +
+    String(today.getDate()).padStart(2, "0");
+
+  function hitCounter(key, elementId) {
+    fetch("https://abacus.jasoncameron.dev/hit/" + counterNamespace + "/" + key)
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        document.getElementById(elementId).textContent = data.value;
+      })
+      .catch(function () {
+        document.getElementById(elementId).textContent = "N/A";
+      });
+  }
+
+  hitCounter(todayKey, "visits-today");
+  hitCounter("total-visits", "visits-total");
 });
