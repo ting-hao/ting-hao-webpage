@@ -1,0 +1,1126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ting-Hao Liu's Webpage</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+
+<header class="sky-daytime">
+  <h1 class="site-title">Ting-Hao Liu's Webpage</h1>
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-item"><a href="#" class="nav-link" data-page="introduction">Introduction</a></li>
+
+      <li class="nav-item has-dropdown">
+        <a href="#" class="nav-link" data-page="knowledge-robotics">Expertise</a>
+        <ul class="dropdown">
+          <li><a href="#" data-page="knowledge-robotics">Robotics</a></li>
+          <li><a href="#" data-page="knowledge-robot-control">Robot Control</a></li>
+          <li><a href="#" data-page="knowledge-reinforcement-learning">Reinforcement Learning</a></li>
+          <li><a href="#" data-page="knowledge-python">Python</a></li>
+          <li><a href="#" data-page="knowledge-control">Control</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item has-dropdown">
+        <a href="#" class="nav-link" data-page="research-robotics">Research</a>
+        <ul class="dropdown">
+          <li><a href="#" data-page="research-robotics">Robotics</a></li>
+          <li><a href="#" data-page="research-image-processing">Image Processing</a></li>
+          <li><a href="#" data-page="research-control">Control</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item"><a href="#" class="nav-link" data-page="publications">Publications</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <section id="page-introduction" class="page active">
+    <h2>Introduction</h2>
+    <p>Welcome. I'm Ting-Hao Liu. Replace this paragraph with a short bio: your background, current
+       role or degree program, and the areas you focus on (robotics, control, machine learning, etc.).</p>
+    <p>You can also add a profile photo, contact links (email, LinkedIn, GitHub), and a short list of
+       highlights or skills here.</p>
+  </section>
+
+  <section id="page-knowledge-robotics" class="page">
+    <h2>Expertise &mdash; Robotics</h2>
+    <div class="docx-content">
+<p class="lead">These are the core robotics topics:</p>
+<nav class="toc" aria-label="On this page">
+<ol type="1">
+<li><a href="#forward-kinematics">Forward Kinematics</a></li>
+<li><a href="#inverse-kinematics">Inverse Kinematics</a></li>
+<li><a href="#jacobian">Jacobian</a></li>
+<li><a href="#dynamics">Dynamics</a></li>
+</ol>
+</nav>
+<h3 id="forward-kinematics">Forward Kinematics</h3>
+<p>Forward kinematics maps a robot's joint-frame coordinates to a 3D Cartesian coordinate. A 4&times;4 homogeneous transformation matrix represents the rotation and translation between consecutive frames.</p>
+<h4>A. Denavit&ndash;Hartenberg Parameters</h4>
+<figure>
+<img src="Knowledge/media/media/image1.jpeg" style="width:3.05278in;height:2.15856in" />
+<figcaption>Fig. 1: Denavit&ndash;Hartenberg kinematic parameters</figcaption>
+</figure>
+<p>There are 4 steps to move from the frame of joint <span class="math inline">\(i - 1\)</span> to joint <span class="math inline">\(i\)</span>:</p>
+<ul>
+<li><p>Translate along <span class="math inline">\(z\)</span>-axis on joint <span class="math inline">\(i\)</span> with <span class="math inline">\(d_{i}\)</span> to the intersection of the common normal between joint <span class="math inline">\(i\)</span> and joint <span class="math inline">\(i + 1\)</span>.</p></li>
+<li><p>Revolve along <span class="math inline">\(z\)</span>-axis on joint <span class="math inline">\(i\)</span> with <span class="math inline">\(\theta_{i}\)</span> to match <span class="math inline">\(x\)</span>-axis with the common normal.</p></li>
+<li><p>Translate along <span class="math inline">\(x\)</span>-axis with <span class="math inline">\(a_{i}\)</span> onto joint <span class="math inline">\(i + 1\)</span>.</p></li>
+<li><p>Revolve along <span class="math inline">\(x\)</span>-axis with <span class="math inline">\(\alpha_{i}\)</span> to align <span class="math inline">\(z\)</span>-axis to joint <span class="math inline">\(i + 1\)</span>.</p></li>
+</ul>
+<blockquote>
+<p>The transformation matrix becomes</p>
+</blockquote>
+<p><span class="math display">\[{\mkern-3mu_{i}^{i - 1}\mkern1.5muT = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; d_{i} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+\cos\left( \theta_{i} \right) &amp; - \sin\left( \theta_{i} \right) &amp; 0 &amp; 0 \\
+\sin\left( \theta_{i} \right) &amp; \cos\left( \theta_{i} \right) &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; a_{i} \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \cos\left( \alpha_{i} \right) &amp; - \sin\left( \alpha_{i} \right) &amp; 0 \\
+0 &amp; \sin\left( \alpha_{i} \right) &amp; \cos\left( \alpha_{i} \right) &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+}\begin{array}{r}
+ = \begin{bmatrix}
+\cos\left( \theta_{i} \right) &amp; - \sin\left( \theta_{i} \right)\cos\left( \alpha_{i} \right) &amp; \sin\left( \theta_{i} \right)\sin\left( \alpha_{i} \right) &amp; a_{i}\cos\left( \theta_{i} \right) \\
+\sin\left( \theta_{i} \right) &amp; \cos\left( \theta_{i} \right)\cos\left( \alpha_{i} \right) &amp; - \cos\left( \theta_{i} \right)\sin\left( \alpha_{i} \right) &amp; a_{i}\sin\left( \theta_{i} \right) \\
+0 &amp; \sin\left( \alpha_{i} \right) &amp; \cos\left( \alpha_{i} \right) &amp; d_{i} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\quad(1)
+\end{array}\]</span></p>
+<h4>B. Modified Denavit&ndash;Hartenberg Parameters</h4>
+<figure>
+<img src="Knowledge/media/media/image2.jpeg" style="width:3.525in;height:2.53617in" />
+<figcaption>Fig. 2: Modified Denavit&ndash;Hartenberg kinematic parameters</figcaption>
+</figure>
+<p>There are 4 steps to move from the frame of joint <span class="math inline">\(i - 1\)</span> to joint <span class="math inline">\(i\)</span>:</p>
+<ul>
+<li><p>Revolve along <span class="math inline">\(x\)</span>-axis on joint <span class="math inline">\(i - 1\)</span> with <span class="math inline">\(\alpha_{i - 1}\)</span> to align <span class="math inline">\(z\)</span>-axis to joint <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Translate along <span class="math inline">\(x\)</span>-axis, which is the common normal between joint <span class="math inline">\(i - 1\)</span> and joint <span class="math inline">\(i\)</span>, with <span class="math inline">\(a_{i - 1}\)</span> onto joint <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Translate along <span class="math inline">\(z\)</span>-axis on joint <span class="math inline">\(i\)</span> with <span class="math inline">\(d_{i}\)</span> to the intersection of the common normal between joint <span class="math inline">\(i\)</span> and joint <span class="math inline">\(i + 1\)</span>.</p></li>
+<li><p>Revolve along <span class="math inline">\(z\)</span>-axis on joint <span class="math inline">\(i\)</span> with <span class="math inline">\(\theta_{i}\)</span> to match <span class="math inline">\(x\)</span>-axis with the common normal.</p></li>
+</ul>
+<blockquote>
+<p>The transformation matrix becomes</p>
+</blockquote>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{i}^{i - 1}\mkern1.5muT = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \cos\left( \alpha_{i - 1} \right) &amp; - \sin\left( \alpha_{i - 1} \right) &amp; 0 \\
+0 &amp; \sin\left( \alpha_{i - 1} \right) &amp; \cos\left( \alpha_{i - 1} \right) &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; a_{i - 1} \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; d_{i} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+\cos\left( \theta_{i} \right) &amp; - \sin\left( \theta_{i} \right) &amp; 0 &amp; 0 \\
+\sin\left( \theta_{i} \right) &amp; \cos\left( \theta_{i} \right) &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \\
+ = \begin{bmatrix}
+\cos\left( \theta_{i} \right) &amp; - \sin\left( \theta_{i} \right) &amp; 0 &amp; a_{i - 1} \\
+\cos\left( \alpha_{i - 1} \right)\sin\left( \theta_{i} \right) &amp; \cos\left( \alpha_{i - 1} \right)\cos\left( \theta_{i} \right) &amp; - \sin\left( \alpha_{i - 1} \right) &amp; - d_{i}\sin\left( \alpha_{i - 1} \right) \\
+\sin\left( \alpha_{i - 1} \right)\sin\left( \theta_{i} \right) &amp; \sin\left( \alpha_{i - 1} \right)\cos\left( \theta_{i} \right) &amp; \cos\left( \alpha_{i - 1} \right) &amp; d_{i}\cos\left( \alpha_{i - 1} \right) \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\quad(2)
+\end{array}\]</span></p>
+<p class="example-label">Example: (PUMA 560)</p>
+<figure>
+<img src="Knowledge/media/media/image3.jpeg" style="width:3.41975in;height:4.06944in" />
+<figcaption>Fig. 3: PUMA 560</figcaption>
+</figure>
+<p>Step 1: Define all joints on the z-axis, and define x-axis according to the robot geometry.</p>
+<p>Step 2: Construct the DH table.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Joint</th>
+<th><span class="math display">\[\alpha_{i - 1}\]</span></th>
+<th><span class="math display">\[a_{i - 1}\]</span></th>
+<th><span class="math display">\[d_{i}\]</span></th>
+<th><span class="math display">\[\theta_{i}\]</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[\theta_{1}\]</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="math display">\[- 90{^\circ}\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[\theta_{2}\]</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[a_{2}\]</span></td>
+<td><span class="math display">\[d_{3}\]</span></td>
+<td><span class="math display">\[\theta_{3}\]</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="math display">\[- 90{^\circ}\]</span></td>
+<td><span class="math display">\[a_{3}\]</span></td>
+<td><span class="math display">\[d_{4}\]</span></td>
+<td><span class="math display">\[\theta_{4}\]</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="math display">\[90{^\circ}\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[\theta_{5}\]</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="math display">\[- 90{^\circ}\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[0\]</span></td>
+<td><span class="math display">\[\theta_{6}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Step 3: Calculate the transform matrix: <span class="math inline">\(\mkern-3mu_{6}^{0}\mkern1.5muT =\mkern-3mu_{1}^{0}\mkern1.5muT_{2}^{1}T_{3}^{2}T_{4}^{3}T_{5}^{4}T_{6}^{5}T\)</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{6}^{0}\mkern1.5muT = \begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\quad(3)
+\end{array}\]</span></p>
+<p><span class="math display">\[p_{x} = c_{1}\left( a_{2}c_{2} + a_{3}c_{23} - d_{4}s_{23} \right) - d_{3}s_{1}\]</span></p>
+<p><span class="math display">\[p_{y} = s_{1}\left( a_{2}c_{2} + a_{3}c_{23} - d_{4}s_{23} \right) + d_{3}c_{1}\]</span></p>
+<p><span class="math display">\[p_{z} = - a_{3}s_{23} - a_{2}s_{2} - d_{4}c_{23}\]</span></p>
+<p><span class="math display">\[c_{1} = \cos\left( \theta_{1} \right),\ s_{1} = \sin\left( \theta_{1} \right)\]</span></p>
+<h3 id="inverse-kinematics">Inverse Kinematics</h3>
+<p>Inverse kinematics maps a desired end-effector position in Cartesian coordinates to the corresponding robot joint angles, so that the joint commands needed to reach a target pose can be computed directly.</p>
+<h4>A. Geometric Solution</h4>
+<p>Decompose the spatial geometry into a set of planar sub-problems.</p>
+<p class="example-label">Example: (RRR manipulator)</p>
+<figure>
+<img src="Knowledge/media/media/image4.jpeg" style="width:3.14306in;height:2.55804in" />
+<figcaption>Fig. 4: RRR manipulator</figcaption>
+</figure>
+<p>From top view, the joint 1 angle <span class="math inline">\(\theta_{1}\)</span> can be calculated with desired position <span class="math inline">\(\left( x_{d},y_{d},z_{d} \right)\)</span>:</p>
+<figure>
+<img src="Knowledge/media/media/image5.jpeg" style="width:2.60579in;height:2.30556in" />
+<figcaption>Fig. 5: Top view</figcaption>
+</figure>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{1} = atan2\left( y_{d},x_{d} \right)\quad(4)
+\end{array}\]</span></p>
+<p>From side view, the joint 2 and 3 angle <span class="math inline">\(\theta_{2}\)</span>, <span class="math inline">\(\theta_{3}\)</span> can be calculated:</p>
+<figure>
+<img src="Knowledge/media/media/image6.jpeg" style="width:3.27361in;height:2.30564in" />
+<figcaption>Fig. 6: Side view</figcaption>
+</figure>
+<p><span class="math display">\[r = \sqrt{x_{d}^{2} + y_{d}^{2} + \left( z_{d} - L_{1} - L_{2} \right)^{2}}\]</span></p>
+<p><span class="math display">\[\cos\left( \theta_{3} \right) = \dfrac{r^{2} - L_{3}^{2} - L_{4}^{2}}{2L_{3}L_{4}}\]</span></p>
+<p><span class="math display">\[\sin\left( \theta_{3} \right) = \pm \sqrt{1 - \cos^{2}\left( \theta_{3} \right)}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{3} = atan2\left( \pm \sqrt{1 - \cos^{2}\left( \theta_{3} \right)},\cos\left( \theta_{3} \right) \right)\quad(5)
+\end{array}\]</span></p>
+<p><span class="math display">\[\cos(\beta) = \dfrac{L_{4}^{2} - r^{2} - L_{3}^{2}}{2rL_{3}}\]</span></p>
+<p><span class="math display">\[\sin(\beta) = \pm \sqrt{1 - \cos^{2}(\beta)}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{2} = \alpha + \beta = atan2\left( z_{d} - L_{1} - L_{2},\sqrt{x_{d}^{2} + y_{d}^{2}} \right) + atan2\left( \pm \sqrt{1 - \cos^{2}(\beta)},\cos(\beta) \right)\quad(6)
+\end{array}\]</span></p>
+<h4>B. Algebraic Solution (Pieper's Method)</h4>
+<p class="example-label">Example: (PUMA 560)</p>
+<p>Consider the forward kinematics <span class="math inline">\(\mkern-3mu_{6}^{0}\mkern1.5muT = \begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\)</span></p>
+<p>The forward kinematics from joint 1 is then:</p>
+<p><span class="math display">\[{{\mkern-3mu_{}^{1}\mkern1.5muT}_{6} = \begin{bmatrix}
+c_{1} &amp; s_{1} &amp; 0 &amp; 0 \\
+ - s_{1} &amp; c_{1} &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+}\begin{array}{r}
+ = \begin{bmatrix}
+* &amp; * &amp; * &amp; a_{2}c_{2} + a_{3}c_{23} - d_{4}s_{23} \\
+* &amp; * &amp; * &amp; d_{3} \\
+* &amp; * &amp; * &amp; - a_{3}s_{23} - a_{2}s_{2} - d_{4}c_{23} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\quad(7)
+\end{array}\]</span></p>
+<p>From the second row of <span class="math inline">\((7)\)</span>:</p>
+<p><span class="math display">\[\begin{array}{r}
+ - s_{1}p_{x} + c_{1}p_{y} = d_{3}\quad(8)
+\end{array}\]</span></p>
+<p>Let <span class="math inline">\(\rho = \sqrt{p_{x}^{2} + p_{y}^{2}},\ \phi = atan2(p_{y},p_{x})\)</span>, the above equation can be written as</p>
+<p><span class="math display">\[- s_{1}c_{\phi} + c_{1}s_{\phi} = \dfrac{d_{3}}{\rho}\]</span></p>
+<p><span class="math display">\[\sin\left( \phi - \theta_{1} \right) = \dfrac{d_{3}}{\rho}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{1} = \phi - atan2\left( \dfrac{d_{3}}{\rho}, \pm \sqrt{1 - \left( \dfrac{d_{3}}{\rho} \right)^{2}} \right)\quad(9)
+\end{array}\]</span></p>
+<p>Consider other two rows:</p>
+<p><span class="math display">\[\begin{array}{r}
+c_{1}p_{x} + s_{1}p_{y} = a_{2}c_{2} + a_{3}c_{23} - d_{4}s_{23}\quad(10)
+\end{array}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+p_{z} = - a_{3}s_{23} - a_{2}s_{2} - d_{4}c_{23}\quad(11)
+\end{array}\]</span></p>
+<p><span class="math inline">\((9)^{2} + (11)^{2} + (12)^{2}\)</span> becomes:</p>
+<p><span class="math display">\[p_{x}^{2} + p_{y}^{2} + p_{z}^{2} = a_{2}^{2} + a_{3}^{2} + d_{3}^{2} + d_{4}^{2} + 2a_{2}a_{3}c_{3} - 2a_{2}d_{4}s_{3}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\dfrac{p_{x}^{2} + p_{y}^{2} + p_{z}^{2} - \left( a_{2}^{2} + a_{3}^{2} + d_{3}^{2} + d_{4}^{2} \right)}{- 2a_{2}} = d_{4}s_{3} - a_{3}c_{3} = K\quad(12)
+\end{array}\]</span></p>
+<p>Let <span class="math inline">\(\rho = \sqrt{a_{3}^{2} + d_{4}^{2}},\ \phi = atan2(a_{3},d_{4})\)</span>:</p>
+<p><span class="math display">\[\sin\left( \theta_{3} - \phi \right) = \dfrac{K}{\rho}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{3} = \phi + atan2\left( \dfrac{K}{\rho}, \pm \sqrt{1 - \left( \dfrac{K}{\rho} \right)^{2}} \right)\quad(13)
+\end{array}\]</span></p>
+<p>The forward kinematics from joint 3 is:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{6}^{3}\mkern1.5muT = \begin{bmatrix}
+c_{1}c_{23} &amp; s_{1}c_{23} &amp; - s_{23} &amp; - a_{2}c_{3} \\
+ - c_{1}s_{23} &amp; - s_{1}s_{23} &amp; - c_{23} &amp; a_{2}s_{3} \\
+ - s_{1} &amp; c_{1} &amp; 0 &amp; - d_{3} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} = \begin{bmatrix}
+* &amp; * &amp; * &amp; a_{3} \\
+* &amp; * &amp; * &amp; d_{4} \\
+* &amp; * &amp; * &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\ \quad(14)
+\end{array}\]</span></p>
+<p>From the first and second row of <span class="math inline">\((14)\)</span>:</p>
+<p><span class="math display">\[\begin{array}{r}
+\left\{ \begin{array}{r}
+c_{23}\left( c_{1}p_{x} + s_{1}p_{y} \right) - s_{23}p_{z} = a_{3} + a_{2}c_{3} \\
+c_{23}p_{z} + s_{23}\left( c_{1}p_{x} + s_{1}p_{y} \right) = - d_{4} + a_{2}s_{3}
+\end{array} \right.\ \quad(15)
+\end{array}\]</span></p>
+<p>The solution of <span class="math inline">\((15)\)</span> is:</p>
+<p><span class="math display">\[c_{23} = \cos\left( \theta_{2} + \theta_{3} \right) = \dfrac{\left| \begin{matrix}
+a_{3} + a_{2}c_{3} &amp; - p_{z} \\
+ - d_{4} + a_{2}s_{3} &amp; c_{1}p_{x} + s_{1}p_{y}
+\end{matrix} \right|}{\left| \begin{matrix}
+c_{1}p_{x} + s_{1}p_{y} &amp; - p_{z} \\
+p_{z} &amp; c_{1}p_{x} + s_{1}p_{y}
+\end{matrix} \right|}\]</span></p>
+<p><span class="math display">\[s_{23} = \sin\left( \theta_{2} + \theta_{3} \right) = \dfrac{\left| \begin{matrix}
+c_{1}p_{x} + s_{1}p_{y} &amp; a_{3} + a_{2}c_{3} \\
+p_{z} &amp; - d_{4} + a_{2}s_{3}
+\end{matrix} \right|}{\left| \begin{matrix}
+c_{1}p_{x} + s_{1}p_{y} &amp; - p_{z} \\
+p_{z} &amp; c_{1}p_{x} + s_{1}p_{y}
+\end{matrix} \right|}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{2} = atan2\left( \begin{array}{r}
+\left( c_{1}p_{x} + s_{1}p_{y} \right)\left( - d_{4} + a_{2}s_{3} \right) - p_{z}\left( a_{3} + a_{2}c_{3} \right), \\
+\left( a_{3} + a_{2}c_{3} \right)\left( c_{1}p_{x} + s_{1}p_{y} \right) + p_{z}\left( - d_{4} + a_{2}s_{3} \right)
+\end{array} \right) - \theta_{3}\ \quad(16)
+\end{array}\]</span></p>
+<p>We can start solving the rotation matrix, the forward kinematics from joint 3 is:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{6}^{3}\mkern1.5muT = \begin{bmatrix}
+c_{1}c_{23} &amp; s_{1}c_{23} &amp; - s_{23} &amp; - a_{2}c_{3} \\
+ - c_{1}s_{23} &amp; - s_{1}s_{23} &amp; - c_{23} &amp; a_{2}s_{3} \\
+ - s_{1} &amp; c_{1} &amp; 0 &amp; - d_{3} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \\
+ = \begin{bmatrix}
+c_{4}c_{5}c_{6} - s_{4}s_{6} &amp; - c_{4}c_{5}s_{6} - s_{4}c_{6} &amp; - c_{4}s_{5} &amp; * \\
+s_{5}c_{6} &amp; - s_{5}s_{6} &amp; - c_{5} &amp; * \\
+ - s_{4}c_{5}c_{6} - c_{4}s_{6} &amp; s_{4}c_{5}s_{6} - c_{4}c_{6} &amp; s_{4}s_{5} &amp; * \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\ \quad(17)
+\end{array}\]</span></p>
+<p>Consider (1,3) and (3,3) elements:</p>
+<p><span class="math display">\[c_{1}c_{23}r_{13} + s_{1}c_{23}r_{23} - s_{23}r_{33} = - c_{4}s_{5}\]</span></p>
+<p><span class="math display">\[- s_{1}r_{13} + c_{1}r_{23} = s_{4}s_{5}\]</span></p>
+<p>When <span class="math inline">\(s_{5} \neq 0\)</span>,</p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{4} = atan2\left( - s_{1}r_{13} + c_{1}r_{23}, - c_{1}c_{23}r_{13} - s_{1}c_{23}r_{23} + s_{23}r_{33} \right)\quad(18)
+\end{array}\]</span></p>
+<p>The forward kinematics from joint 4 is:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{6}^{4}\mkern1.5muT = \begin{bmatrix}
+c_{1}c_{23}c_{4} + s_{1}s_{4} &amp; s_{1}c_{23}c_{4} - c_{1}s_{4} &amp; - s_{23}c_{4} &amp; * \\
+ - c_{1}c_{23}s_{4} + s_{1}c_{4} &amp; - s_{1}c_{23}s_{4} - c_{1}c_{4} &amp; s_{23}s_{4} &amp; * \\
+ - c_{1}s_{23} &amp; - s_{1}s_{23} &amp; - c_{23} &amp; * \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \\
+ = \begin{bmatrix}
+c_{5}c_{6} &amp; - c_{5}s_{6} &amp; - s_{5} &amp; * \\
+s_{6} &amp; c_{6} &amp; 0 &amp; * \\
+s_{5}c_{6} &amp; - s_{5}s_{6} &amp; c_{5} &amp; * \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\quad(19)
+\end{array}\]</span></p>
+<p>Consider (1,3) and (3,3) elements:</p>
+<p><span class="math display">\[- r_{13}\left( c_{1}c_{23}c_{4} + s_{1}s_{4} \right) - r_{23}\left( s_{1}c_{23}c_{4} - c_{1}s_{4} \right) + r_{33}s_{23}c_{4} = s_{5}\]</span></p>
+<p><span class="math display">\[- r_{13}c_{1}s_{23} - r_{23}s_{1}s_{23} - r_{33}c_{23} = c_{5}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{5} = atan2\left( \begin{array}{r}
+ - r_{13}\left( c_{1}c_{23}c_{4} + s_{1}s_{4} \right) - r_{23}\left( s_{1}c_{23}c_{4} - c_{1}s_{4} \right) + r_{33}s_{23}c_{4}, \\
+ - c_{1}c_{23}r_{13} - s_{1}c_{23}r_{23} + s_{23}r_{33}
+\end{array} \right)\quad(20)
+\end{array}\]</span></p>
+<p>The forward kinematics from joint 5 is:</p>
+<p><span class="math display">\[\mkern-3mu_{6}^{5}\mkern1.5muT = \begin{bmatrix}
+c_{1}c_{23}c_{4}c_{5} + s_{1}s_{4}c_{5} - s_{1}c_{23}c_{4}s_{5} + c_{1}s_{4}s_{5} &amp; s_{23}c_{4} &amp; c_{1}c_{23}c_{4}s_{5} + s_{1}s_{4}s_{5} + s_{1}c_{23}c_{4}s_{5} - c_{1}s_{4}c_{5} &amp; * \\
+ - c_{1}c_{23}s_{4}c_{5} + s_{1}c_{4}c_{5} + s_{1}c_{23}s_{4}s_{5} + c_{1}c_{4}s_{5} &amp; - s_{23}s_{4} &amp; - c_{1}c_{23}s_{4}s_{5} + s_{1}c_{4}s_{5} - s_{1}c_{23}s_{4}c_{5} - c_{1}c_{4}c_{5} &amp; * \\
+ - c_{1}s_{23}c_{5} + s_{1}s_{23}s_{5} &amp; - c_{23} &amp; - c_{1}s_{23}s_{5} - s_{1}s_{23}c_{5} &amp; * \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
+r_{21} &amp; r_{22} &amp; r_{23} &amp; p_{y} \\
+r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} = \begin{bmatrix}
+c_{6} &amp; - s_{6} &amp; 0 &amp; * \\
+0 &amp; 0 &amp; 1 &amp; * \\
+ - s_{6} &amp; - c_{6} &amp; 0 &amp; * \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p>Consider (1,1) and (1,3) elements:</p>
+<p><span class="math display">\[r_{11}\left( c_{1}c_{23}c_{4}c_{5} + s_{1}s_{4}c_{5} - s_{1}c_{23}c_{4}s_{5} + c_{1}s_{4}s_{5} \right) + r_{21}s_{23}c_{4} + r_{31}\left( c_{1}c_{23}c_{4}s_{5} + s_{1}s_{4}s_{5} + s_{1}c_{23}c_{4}s_{5} - c_{1}s_{4}c_{5} \right) = c_{6}\]</span></p>
+<p><span class="math display">\[r_{11}\left( c_{1}s_{23}c_{5} - s_{1}s_{23}s_{5} \right) + r_{21}c_{23} + r_{31}\left( c_{1}s_{23}s_{5} + s_{1}s_{23}c_{5} \right) = s_{6}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{6} = atan2\left( s_{6},c_{6} \right)\quad(21)
+\end{array}\]</span></p>
+<h3 id="jacobian">Jacobian</h3>
+<p>The Jacobian matrix maps the joint velocities to the end effector's linear and angular velocity:</p>
+<p><span class="math display">\[\dot{\mathbf{x}} = J(\mathbf{q})\dot{\mathbf{q}}\]</span></p>
+<p>where <span class="math inline">\(\dot{\mathbf{x}} \in \mathbb{R}^{6 \times 1}\)</span> denotes the end effector's linear and angular velocity in three-dimensional space, and <span class="math inline">\(\dot{\mathbf{q}} \in \mathbb{R}^{n \times 1}\)</span> denotes the velocity vector of the <span class="math inline">\(n\)</span> robot joints.</p>
+<h4>A. Velocity Propagation Method</h4>
+<figure>
+<img src="Knowledge/media/media/image7.jpeg" style="width:3.22917in;height:1.95671in" />
+<figcaption>Fig. 7: Kinematics</figcaption>
+</figure>
+<h5>Rotational Joint</h5>
+<p>Angular velocity:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu\mathbf{\omega}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}\mathbf{\omega}_{i} + {\dot{\theta}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1}\quad(22)
+\end{array}\]</span></p>
+<p>Linear velocity:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu\mathbf{v}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR\left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{v}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{i + 1} \right)\quad(23)
+\end{array}\]</span></p>
+<h5>Prismatic Joint</h5>
+<p>Angular velocity:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu\mathbf{\omega}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}\mathbf{\omega}_{i}\quad(24)
+\end{array}\]</span></p>
+<p>Linear velocity:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu\mathbf{v}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR\left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{v}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{i + 1} \right) + {\dot{d}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1}\quad(25)
+\end{array}\]</span></p>
+<p class="example-label">Example: (Planar RR manipulator)</p>
+<figure>
+<img src="Knowledge/media/media/image8.jpeg" style="width:2.71909in;height:2.37601in" />
+<figcaption>Fig. 8: Planar RR manipulator</figcaption>
+</figure>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{1}^{0}\mkern1.5muT = \begin{bmatrix}
+c_{1} &amp; - s_{1} &amp; 0 &amp; 0 \\
+s_{1} &amp; c_{1} &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix},\mkern-3mu_{2}^{1}\mkern1.5muT = \begin{bmatrix}
+c_{2} &amp; - s_{2} &amp; 0 &amp; l_{1} \\
+s_{2} &amp; c_{2} &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix},\mkern-3mu_{3}^{2}\mkern1.5muT = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; l_{2} \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\quad(26)
+\end{array}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} =\mkern-3mu_{0}^{1}\mkern1.5muR_{}^{0}\mathbf{\omega}_{0} + {\dot{\theta}}_{1}{}_{}^{1}{\widehat{\mathbf{z}}}_{1} =\mkern-3mu_{0}^{1}\mkern1.5muR\begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix} + {\dot{\theta}}_{1}\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{v}_{1} =\mkern-3mu_{0}^{1}\mkern1.5muR\left(\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{v}_{0} +\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{\omega}_{0} \times_{}^{0}\mathbf{P}_{1} \right) =\mkern-3mu_{0}^{1}\mkern1.5muR\left( \begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix} \times_{}^{0}P_{1} \right) = \begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{\omega}_{2} =\mkern-3mu_{1}^{2}\mkern1.5muR_{}^{1}\mathbf{\omega}_{1} + {\dot{\theta}}_{2}{}_{}^{2}{\widehat{\mathbf{z}}}_{2} = \begin{bmatrix}
+c_{2} &amp; s_{2} &amp; 0 \\
+ - s_{2} &amp; c_{2} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix} + {\dot{\theta}}_{2}\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1} + {\dot{\theta}}_{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{v}_{2} =\mkern-3mu_{1}^{2}\mkern1.5muR\left(\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{v}_{1} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} \times_{}^{1}\mathbf{P}_{2} \right) = \begin{bmatrix}
+c_{2} &amp; s_{2} &amp; 0 \\
+ - s_{2} &amp; c_{2} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\left( \begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+l_{1} \\
+0 \\
+0
+\end{bmatrix} \right) = \begin{bmatrix}
+s_{2}l_{1}{\dot{\theta}}_{1} \\
+c_{2}l_{1}{\dot{\theta}}_{1} \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{3}\mkern1.5mu\mathbf{\omega}_{3} = \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1} + {\dot{\theta}}_{2}
+\end{bmatrix}\quad(27)
+\end{array}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{3}\mkern1.5mu\mathbf{v}_{3} =\mkern-3mu_{2}^{3}\mkern1.5muR\left(\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{v}_{2} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{\omega}_{2} \times_{}^{2}\mathbf{P}_{3} \right) = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\left( \begin{bmatrix}
+s_{2}l_{1}{\dot{\theta}}_{1} \\
+c_{2}l_{1}{\dot{\theta}}_{1} \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1} + {\dot{\theta}}_{2}
+\end{bmatrix} \times \begin{bmatrix}
+l_{2} \\
+0 \\
+0
+\end{bmatrix} \right) \\
+ = \begin{bmatrix}
+s_{2}l_{1}{\dot{\theta}}_{1} \\
+c_{2}l_{1}{\dot{\theta}}_{1} + l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right) \\
+0
+\end{bmatrix}\quad(28)
+\end{array}\]</span></p>
+<p>Combining Eqs. <span class="math inline">\((27)\)</span> and <span class="math inline">\((28)\)</span> yields:</p>
+<p><span class="math display">\[\begin{array}{r}
+\begin{bmatrix}
+\mkern-3mu_{}^{3}\mkern1.5mu\mathbf{v}_{3} \\
+\mkern-3mu_{}^{3}\mkern1.5mu\mathbf{\omega}_{3}
+\end{bmatrix} = \begin{bmatrix}
+s_{2}l_{1} &amp; 0 \\
+c_{2}l_{1} + l_{2} &amp; l_{2} \\
+0 &amp; 0 \\
+0 &amp; 0 \\
+0 &amp; 0 \\
+1 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+{\dot{\theta}}_{1} \\
+{\dot{\theta}}_{2}
+\end{bmatrix}\quad(29)
+\end{array}\]</span></p>
+<p>The Jacobian is then obtained by transforming Eq. <span class="math inline">\((29)\)</span> into the base (world) frame:</p>
+<p><span class="math display">\[\begin{array}{r}
+\begin{bmatrix}
+\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{v}_{3} \\
+\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{\omega}_{3}
+\end{bmatrix} = \begin{bmatrix}
+\mkern-3mu_{3}^{0}\mkern1.5muR &amp; 0 \\
+0 &amp;\mkern-3mu_{3}^{0}\mkern1.5muR
+\end{bmatrix}\begin{bmatrix}
+s_{2}l_{1} &amp; 0 \\
+c_{2}l_{1} + l_{2} &amp; l_{2} \\
+0 &amp; 0 \\
+0 &amp; 0 \\
+0 &amp; 0 \\
+1 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+{\dot{\theta}}_{1} \\
+{\dot{\theta}}_{2}
+\end{bmatrix} = \begin{bmatrix}
+ - s_{1}l_{1} - s_{12}l_{2} &amp; - s_{12}l_{2} \\
+c_{1}l_{1} + c_{12}l_{2} &amp; c_{12}l_{2} \\
+0 &amp; 0 \\
+0 &amp; 0 \\
+0 &amp; 0 \\
+1 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+{\dot{\theta}}_{1} \\
+{\dot{\theta}}_{2}
+\end{bmatrix}\quad(30)
+\end{array}\]</span></p>
+<h4>B. Explicit Form</h4>
+<p><span class="math display">\[\begin{array}{r}
+J\left( \mathbf{q} \right) = \begin{bmatrix}
+J_{v} \\
+J_{\omega}
+\end{bmatrix} = \left\{ \begin{array}{r}
+\begin{bmatrix}
+\cdots &amp;\mkern-3mu_{i}^{0}\mkern1.5mu\mathbf{z} &amp; \cdots \\
+\cdots &amp; \mathbf{0} &amp; \cdots
+\end{bmatrix}\ if\ joint\ i\ is\ prismatic \\
+\begin{bmatrix}
+\cdots &amp;\mkern-3mu_{i}^{0}\mkern1.5mu\mathbf{z} \times \left(\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{n} -\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{i} \right) &amp; \cdots \\
+\cdots &amp;\mkern-3mu_{i}^{0}\mkern1.5mu\mathbf{z} &amp; \cdots
+\end{bmatrix}\ if\ joint\ i\ is\ revolute
+\end{array} \right.\ \quad(31)
+\end{array}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{i}^{0}\mkern1.5muT = \begin{bmatrix}
+* &amp; * &amp;\mkern-3mu_{i}^{0}\mkern1.5mu\mathbf{z} &amp;\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{i} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p class="example-label">Example: (Planar RR manipulator)</p>
+<p><span class="math display">\[\mkern-3mu_{1}^{0}\mkern1.5muT = \begin{bmatrix}
+c_{1} &amp; - s_{1} &amp; 0 &amp; 0 \\
+s_{1} &amp; c_{1} &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix},\mkern-3mu_{2}^{0}\mkern1.5muT = \begin{bmatrix}
+c_{12} &amp; - s_{12} &amp; 0 &amp; l_{1}c_{1} \\
+s_{12} &amp; c_{12} &amp; 0 &amp; l_{1}s_{1} \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{3}^{0}\mkern1.5muT = \begin{bmatrix}
+c_{12} &amp; - s_{12} &amp; 0 &amp; l_{1}c_{1} + l_{2}c_{12} \\
+s_{12} &amp; c_{12} &amp; 0 &amp; l_{1}s_{1} + l_{2}s_{12} \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\begin{array}{r}
+J\left( \mathbf{q} \right) = \begin{bmatrix}
+\mkern-3mu_{1}^{0}\mkern1.5mu\mathbf{z} \times \left(\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{3} -\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{1} \right) &amp;\mkern-3mu_{2}^{0}\mkern1.5mu\mathbf{z} \times \left(\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{3} -\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{2} \right) \\
+\mkern-3mu_{1}^{0}\mkern1.5mu\mathbf{z} &amp;\mkern-3mu_{2}^{0}\mkern1.5mu\mathbf{z}
+\end{bmatrix} \\
+ = \begin{bmatrix}
+\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} \times \left( \begin{bmatrix}
+l_{1}c_{1} + l_{2}c_{12} \\
+l_{1}s_{1} + l_{2}s_{12} \\
+0
+\end{bmatrix} - \begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix} \right) &amp; \begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} \times \left( \begin{bmatrix}
+l_{1}c_{1} + l_{2}c_{12} \\
+l_{1}s_{1} + l_{2}s_{12} \\
+0
+\end{bmatrix} - \begin{bmatrix}
+l_{1}c_{1} \\
+l_{1}s_{1} \\
+0
+\end{bmatrix} \right) \\
+\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} &amp; \begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix}
+\end{bmatrix} \\
+ = \begin{bmatrix}
+\begin{bmatrix}
+ - l_{1}s_{1} - l_{2}s_{12} \\
+l_{1}c_{1} + l_{2}c_{12} \\
+0
+\end{bmatrix} &amp; \begin{bmatrix}
+ - l_{2}s_{12} \\
+l_{2}c_{12} \\
+0
+\end{bmatrix} \\
+\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} &amp; \begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix}
+\end{bmatrix}\quad(32)
+\end{array}\]</span></p>
+<h3 id="dynamics">Dynamics</h3>
+<h4>A. Newton&ndash;Euler Formulation</h4>
+<h5>Rotational Joint</h5>
+<p>Angular acceleration:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu{\dot{\mathbf{\omega}}}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}{\dot{\mathbf{\omega}}}_{i} +\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}\mathbf{\omega}_{i} \times {\dot{\theta}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1} + {\ddot{\theta}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1}\quad(33)
+\end{array}\]</span></p>
+<p>Linear acceleration:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu\mathbf{a}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR\left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{a}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu{\dot{\mathbf{\omega}}}_{i} \times_{}^{i}\mathbf{P}_{i + 1} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times \left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{i + 1} \right) \right)\quad(34)
+\end{array}\]</span></p>
+<h5>Prismatic Joint</h5>
+<p>Angular acceleration:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu{\dot{\mathbf{\omega}}}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}{\dot{\mathbf{\omega}}}_{i}\quad(35)
+\end{array}\]</span></p>
+<p>Linear acceleration:</p>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i + 1}\mkern1.5mu\mathbf{a}_{i + 1} = \\
+\mkern-3mu_{i}^{i + 1}\mkern1.5muR\left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{a}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu{\dot{\mathbf{\omega}}}_{i} \times_{}^{i}\mathbf{P}_{i + 1} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times \left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{i + 1} \right) \right) + 2\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}\mathbf{\omega}_{i} \times {\dot{d}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1} + {\ddot{d}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1}\quad(36)
+\end{array}\]</span></p>
+<p>Linear acceleration on center of mass (COM):</p>
+<figure>
+<img src="Knowledge/media/media/image9.jpeg" style="width:3.67083in;height:1.75145in" />
+<figcaption>Fig. 9: Newton&ndash;Euler dynamics</figcaption>
+</figure>
+<p><span class="math display">\[\begin{array}{r}
+\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{a}_{c_{i}} =\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{a}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu{\dot{\mathbf{\omega}}}_{i} \times_{}^{i}\mathbf{P}_{c_{i}} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times \left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{c_{i}} \right)\quad(37)
+\end{array}\]</span></p>
+<h5>Force and Torque at the Center of Mass</h5>
+<p><span class="math display">\[\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{F}_{i} = m_{i}{}_{}^{i}\mathbf{a}_{c_{i}}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{N}_{i} =_{}^{c_{i}}I_{}^{i}{\dot{\mathbf{\omega}}}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{c_{i}}I_{}^{i}\mathbf{\omega}_{i}\]</span></p>
+<p>where <span class="math inline">\(m_{i}\)</span> denotes the mass of link <span class="math inline">\(i\)</span>, and <span class="math inline">\(_{}^{c_{i}}I\)</span> denotes its inertia tensor about the center of mass.</p>
+<h5>Force and Torque Transmitted Through Each Joint</h5>
+<p><span class="math display">\[\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{f}_{i} =\mkern-3mu_{i + 1}^{i}\mkern1.5muR_{}^{i + 1}\mathbf{f}_{i + 1} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{F}_{i}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{n}_{i} =\mkern-3mu_{i + 1}^{i}\mkern1.5muR_{}^{i + 1}\mathbf{n}_{i + 1} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{N}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{P}_{i + 1} \times_{i + 1}^{i}R_{}^{i + 1}\mathbf{f}_{i + 1} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{P}_{c_{i}} \times_{}^{i}\mathbf{F}_{i}\]</span></p>
+<p class="example-label">Example: Planar RR Manipulator</p>
+<h5>1) Forward Recursion: Link Accelerations</h5>
+<p>Starting from the base, the angular and linear acceleration of each link are propagated outward to the end effector:</p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu{\dot{\mathbf{\omega}}}_{1} =\mkern-3mu_{0}^{1}\mkern1.5muR_{}^{i}{\dot{\mathbf{\omega}}}_{i} +\mkern-3mu_{0}^{1}\mkern1.5muR_{}^{0}\mathbf{\omega}_{0} \times {\dot{\theta}}_{1}{}_{}^{1}{\widehat{\mathbf{z}}}_{1} + {\ddot{\theta}}_{1}{}_{}^{1}{\widehat{\mathbf{z}}}_{1} = \begin{bmatrix}
+0 \\
+0 \\
+{\ddot{\theta}}_{1}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[{\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{a}_{1} =\mkern-3mu_{0}^{1}\mkern1.5muR\left(\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{a}_{0} +\mkern-3mu_{}^{0}\mkern1.5mu{\dot{\mathbf{\omega}}}_{0} \times_{}^{0}\mathbf{P}_{1} +\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{\omega}_{0} \times \left(\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{\omega}_{0} \times_{}^{0}\mathbf{P}_{1} \right) \right)
+}{= \begin{bmatrix}
+c_{1} &amp; s_{1} &amp; 0 \\
+ - s_{1} &amp; c_{1} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+0 \\
+g \\
+0
+\end{bmatrix} = \begin{bmatrix}
+s_{1}g \\
+c_{1}g \\
+0
+\end{bmatrix}}\]</span></p>
+<p><span class="math display">\[{\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{a}_{c_{1}} =\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{a}_{1} +\mkern-3mu_{}^{1}\mkern1.5mu{\dot{\mathbf{\omega}}}_{1} \times_{}^{1}\mathbf{P}_{c_{1}} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} \times \left(\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} \times_{}^{1}\mathbf{P}_{c_{1}} \right)
+}{= \begin{bmatrix}
+s_{1}g \\
+c_{1}g \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\ddot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+a_{1}l_{1} \\
+0 \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+a_{1}l_{1} \\
+0 \\
+0
+\end{bmatrix} = \begin{bmatrix}
+ - a_{1}l_{1}{\dot{\theta}}_{1}^{2} + s_{1}g \\
+a_{1}l_{1}{\ddot{\theta}}_{1} + c_{1}g \\
+0
+\end{bmatrix}}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu{\dot{\mathbf{\omega}}}_{2} =\mkern-3mu_{1}^{2}\mkern1.5muR_{}^{1}{\dot{\mathbf{\omega}}}_{1} +\mkern-3mu_{1}^{2}\mkern1.5muR_{}^{1}\mathbf{\omega}_{1} \times {\dot{\theta}}_{2}{}_{}^{2}{\widehat{\mathbf{z}}}_{2} + {\ddot{\theta}}_{2}{}_{}^{2}{\widehat{\mathbf{z}}}_{2} = \begin{bmatrix}
+0 \\
+0 \\
+{\ddot{\theta}}_{1} + {\ddot{\theta}}_{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{a}_{2} =\mkern-3mu_{1}^{2}\mkern1.5muR\left(\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{a}_{1} +\mkern-3mu_{}^{1}\mkern1.5mu{\dot{\mathbf{\omega}}}_{1} \times_{}^{1}\mathbf{P}_{2} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} \times \left(\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} \times_{}^{1}\mathbf{P}_{2} \right) \right) = \begin{bmatrix}
+c_{2} &amp; s_{2} &amp; 0 \\
+ - s_{2} &amp; c_{2} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\left( \begin{bmatrix}
+s_{1}g \\
+c_{1}g \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\ddot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+l_{1} \\
+0 \\
+0
+\end{bmatrix} + + \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1}
+\end{bmatrix} \times \begin{bmatrix}
+l_{1} \\
+0 \\
+0
+\end{bmatrix} \right) = \begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{a}_{c_{2}} =\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{a}_{2} +\mkern-3mu_{}^{2}\mkern1.5mu{\dot{\mathbf{\omega}}}_{2} \times_{}^{2}\mathbf{P}_{c_{2}} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{\omega}_{2} \times \left(\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{\omega}_{2} \times_{}^{2}\mathbf{P}_{c_{2}} \right) = \begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\ddot{\theta}}_{1} + {\ddot{\theta}}_{2}
+\end{bmatrix} \times \begin{bmatrix}
+a_{2}l_{2} \\
+0 \\
+0
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1} + {\dot{\theta}}_{2}
+\end{bmatrix} \times \begin{bmatrix}
+0 \\
+0 \\
+{\dot{\theta}}_{1} + {\dot{\theta}}_{2}
+\end{bmatrix} \times \begin{bmatrix}
+a_{2}l_{2} \\
+0 \\
+0
+\end{bmatrix} = \begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g - a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g + a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right) \\
+0
+\end{bmatrix}\]</span></p>
+<h5>2) Backward Recursion: Joint Forces and Torques</h5>
+<p>Starting from the end effector, the force and torque are propagated back to the base, link by link:</p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{F}_{2} = m_{2}{}_{}^{2}\mathbf{a}_{c_{2}} = m_{2}\begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g - a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g + a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right) \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{N}_{2} =_{}^{c_{2}}I_{}^{2}{\dot{\mathbf{\omega}}}_{2} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{\omega}_{2} \times_{}^{c_{2}}I_{}^{2}\mathbf{\omega}_{2} = \begin{bmatrix}
+0 \\
+0 \\
+I_{zz2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{f}_{2} =\mkern-3mu_{3}^{2}\mkern1.5muR_{}^{3}\mathbf{f}_{3} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{F}_{2} = m_{2}\begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g - a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g + a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right) \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{n}_{2} =\mkern-3mu_{3}^{2}\mkern1.5muR_{}^{3}\mathbf{n}_{3} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{N}_{2} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{P}_{3} \times_{3}^{2}R_{}^{3}\mathbf{f}_{3} +\mkern-3mu_{}^{2}\mkern1.5mu\mathbf{P}_{c_{2}} \times_{}^{2}\mathbf{F}_{2} = \begin{bmatrix}
+0 \\
+0 \\
+I_{zz2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)
+\end{bmatrix} + \begin{bmatrix}
+a_{2}l_{2} \\
+0 \\
+0
+\end{bmatrix} \times m_{2}\begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g - a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g + a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right) \\
+0
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+I_{zz2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)
+\end{bmatrix} + m_{2}\begin{bmatrix}
+0 \\
+0 \\
+a_{2}l_{1}l_{2}{\dot{\theta}}_{1}^{2}s_{2} + a_{2}l_{1}l_{2}{\ddot{\theta}}_{1}c_{2} + a_{2}l_{2}c_{12}g + a_{2}^{2}l_{2}^{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{F}_{1} = m_{1}{}_{}^{1}\mathbf{a}_{c_{1}} = m_{1}\begin{bmatrix}
+ - a_{1}l_{1}{\dot{\theta}}_{1}^{2} + s_{1}g \\
+a_{1}l_{1}{\ddot{\theta}}_{1} + c_{1}g \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{N}_{1} =_{}^{c_{1}}I_{}^{1}{\dot{\mathbf{\omega}}}_{1} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{\omega}_{1} \times_{}^{c_{1}}I_{}^{1}\mathbf{\omega}_{1} = \begin{bmatrix}
+0 \\
+0 \\
+I_{zz1}{\ddot{\theta}}_{1}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{f}_{1} =\mkern-3mu_{2}^{1}\mkern1.5muR_{}^{2}\mathbf{f}_{2} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{F}_{1} = \begin{bmatrix}
+c_{2} &amp; - s_{2} &amp; 0 \\
+s_{2} &amp; c_{2} &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}m_{2}\begin{bmatrix}
+ - l_{1}{\dot{\theta}}_{1}^{2}c_{2} + l_{1}{\ddot{\theta}}_{1}s_{2} + s_{12}g - a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} \\
+l_{1}{\dot{\theta}}_{1}^{2}s_{2} + l_{1}{\ddot{\theta}}_{1}c_{2} + c_{12}g + a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right) \\
+0
+\end{bmatrix} + m_{1}\begin{bmatrix}
+ - a_{1}l_{1}{\dot{\theta}}_{1}^{2} + s_{1}g \\
+a_{1}l_{1}{\ddot{\theta}}_{1} + c_{1}g \\
+0
+\end{bmatrix} = \begin{bmatrix}
+ - m_{2}l_{1}{\dot{\theta}}_{1}^{2} + m_{2}s_{1}g - m_{2}a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2}c_{2} - m_{2}a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)s_{2} - m_{1}a_{1}l_{1}{\dot{\theta}}_{1}^{2} + m_{1}s_{1}g \\
+m_{2}l_{1}{\ddot{\theta}}_{1} + m_{2}c_{1}g - m_{2}a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2}s_{2} + m_{2}a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)c_{2} + m_{1}a_{1}l_{1}{\ddot{\theta}}_{1} + m_{1}c_{1}g \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{n}_{1} =\mkern-3mu_{2}^{1}\mkern1.5muR_{}^{2}\mathbf{n}_{2} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{N}_{1} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{P}_{2} \times_{2}^{1}R_{}^{2}\mathbf{f}_{2} +\mkern-3mu_{}^{1}\mkern1.5mu\mathbf{P}_{c_{1}} \times_{}^{1}\mathbf{F}_{1} = \begin{bmatrix}
+0 \\
+0 \\
+I_{zz2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)
+\end{bmatrix} + m_{2}\begin{bmatrix}
+0 \\
+0 \\
+a_{2}l_{1}l_{2}{\dot{\theta}}_{1}^{2}s_{2} + a_{2}l_{1}l_{2}{\ddot{\theta}}_{1}c_{2} + a_{2}l_{2}c_{12}g + a_{2}^{2}l_{2}^{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0 \\
+I_{zz1}{\ddot{\theta}}_{1}
+\end{bmatrix} + \begin{bmatrix}
+l_{1} \\
+0 \\
+0
+\end{bmatrix} \times \begin{bmatrix}
+ - m_{2}l_{1}{\dot{\theta}}_{1}^{2} + m_{2}s_{1}g - m_{2}a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2}c_{2} - m_{2}a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)s_{2} \\
+m_{2}l_{1}{\ddot{\theta}}_{1} + m_{2}c_{1}g - m_{2}a_{2}l_{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2}s_{2} + m_{2}a_{2}l_{2}\left( {\ddot{\theta}}_{1} + {\ddot{\theta}}_{2} \right)c_{2} \\
+0
+\end{bmatrix} + \begin{bmatrix}
+a_{1}l_{1} \\
+0 \\
+0
+\end{bmatrix} \times m_{1}\begin{bmatrix}
+ - a_{1}l_{1}{\dot{\theta}}_{1}^{2} + s_{1}g \\
+a_{1}l_{1}{\ddot{\theta}}_{1} + c_{1}g \\
+0
+\end{bmatrix}\]</span></p>
+<h5>3) Equations of Motion</h5>
+<p>Collecting terms into the standard inertia, Coriolis&ndash;centripetal, and gravitational matrices (with <span class="math inline">\(a_{1} = a_{2} = 1\)</span>) gives:</p>
+<p><span class="math display">\[\begin{array}{r}
+M\left( \mathbf{q} \right)\ddot{\mathbf{q}} + C\left( \mathbf{q}\mathbf{,}\dot{\mathbf{q}} \right) + G\left( \mathbf{q} \right) = \mathbf{\tau}\quad(38)
+\end{array}\]</span></p>
+<p><span class="math display">\[M\left( \mathbf{q} \right) = \begin{bmatrix}
+I_{zz1} + I_{zz2} + m_{2}l_{2}^{2} + 2m_{2}l_{1}l_{2}c_{2} + \left( m_{1} + m_{2} \right)l_{1}^{2} &amp; I_{zz2} + m_{2}l_{2}^{2} + m_{2}l_{1}l_{2}c_{2} \\
+I_{zz2} + m_{2}l_{2}^{2} + m_{2}l_{1}l_{2}c_{2} &amp; I_{zz2} + m_{2}l_{2}^{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[C\left( \mathbf{q,}\dot{\mathbf{q}} \right) = \begin{bmatrix}
+ - m_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{2}^{2} - 2m_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}{\dot{\theta}}_{2} \\
+m_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}^{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[G\left( \mathbf{q} \right) = \begin{bmatrix}
+m_{2}l_{2}c_{12}g + \left( m_{1} + m_{2} \right)l_{1}c_{1}g \\
+m_{2}l_{2}c_{12}g
+\end{bmatrix}\]</span></p>
+<h4>B. Lagrangian Formulation</h4>
+<p><span class="math display">\[\begin{array}{r}
+\dfrac{d}{dt}\dfrac{\partial K\left( \mathbf{q},\dot{\mathbf{q}} \right)}{\partial\dot{\mathbf{q}}} - \dfrac{\partial K\left( \mathbf{q},\dot{\mathbf{q}} \right)}{\partial\mathbf{q}} + \dfrac{\partial U\left( \mathbf{q} \right)}{\partial\mathbf{q}} = \mathbf{\tau}\quad(39)
+\end{array}\]</span></p>
+<p>where <span class="math inline">\(K(\mathbf{q},\dot{\mathbf{q}})\)</span> denotes the kinetic energy and <span class="math inline">\(U\left( \mathbf{q} \right)\)</span> denotes the potential energy of the system.</p>
+<p class="example-label">Example: Planar RR Manipulator</p>
+<h5>1) Kinetic and Potential Energy</h5>
+<p><span class="math display">\[\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{c_{1}} = \begin{bmatrix}
+a_{1}l_{1}c_{1} \\
+a_{1}l_{1}s_{1} \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{P}_{c_{2}} = \begin{bmatrix}
+l_{1}c_{1} + a_{2}l_{2}c_{12} \\
+l_{1}s_{1} + a_{2}l_{2}s_{12} \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{v}_{c_{1}} =\mkern-3mu_{}^{0}\mkern1.5mu{\dot{\mathbf{P}}}_{c_{1}} = \begin{bmatrix}
+ - a_{1}l_{1}s_{1}{\dot{\theta}}_{1} \\
+a_{1}l_{1}c_{1}{\dot{\theta}}_{1} \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{v}_{c_{2}} =\mkern-3mu_{}^{0}\mkern1.5mu{\dot{\mathbf{P}}}_{c_{2}} = \begin{bmatrix}
+ - l_{1}s_{1}{\dot{\theta}}_{1} - a_{2}l_{2}s_{12}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right) \\
+l_{1}c_{1}{\dot{\theta}}_{1} + a_{2}l_{2}c_{12}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right) \\
+0
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[K\left( \mathbf{q},\dot{\mathbf{q}} \right) = \dfrac{1}{2}m_{1}\left\|\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{v}_{c_{1}} \right\|_{2}^{2} + \dfrac{1}{2}m_{2}\left\|\mkern-3mu_{}^{0}\mkern1.5mu\mathbf{v}_{c_{2}} \right\|_{2}^{2} + \dfrac{1}{2}I_{zz1}{\dot{\theta}}_{1}^{2} + \dfrac{1}{2}I_{zz2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} = \dfrac{1}{2}I_{zz1}{\dot{\theta}}_{1}^{2} + \dfrac{1}{2}I_{zz2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} + \dfrac{1}{2}m_{1}a_{1}^{2}l_{1}^{2}{\dot{\theta}}_{1}^{2} + \dfrac{1}{2}m_{2}l_{1}^{2}{\dot{\theta}}_{1}^{2} + \dfrac{1}{2}m_{2}a_{2}^{2}l_{2}^{2}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)^{2} + m_{2}a_{2}l_{1}l_{2}c_{2}{\dot{\theta}}_{1}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)\]</span></p>
+<p><span class="math display">\[U\left( \mathbf{q} \right) = m_{1}a_{1}l_{1}s_{1}g + m_{2}l_{1}s_{1}g + m_{2}a_{2}l_{2}s_{12}g\]</span></p>
+<h5>2) Lagrangian Derivatives</h5>
+<p><span class="math display">\[\dfrac{\partial K\left( \mathbf{q},\dot{\mathbf{q}} \right)}{\partial\dot{\mathbf{q}}} = \begin{bmatrix}
+{\dot{\theta}}_{1}\left( I_{zz1} + I_{zz2} + m_{1}a_{1}^{2}l_{1}^{2} + m_{2}l_{1}^{2} + m_{2}a_{2}^{2}l_{2}^{2} + 2m_{2}a_{2}l_{1}l_{2}c_{2} \right) + {\dot{\theta}}_{2}\left( I_{zz2} + m_{2}a_{2}^{2}l_{2}^{2} + m_{2}a_{2}l_{1}l_{2}c_{2} \right) \\
+{\dot{\theta}}_{1}\left( I_{zz2} + m_{2}a_{2}^{2}l_{2}^{2} + m_{2}a_{2}l_{1}l_{2}c_{2} \right) + {\dot{\theta}}_{2}\left( I_{zz2} + m_{2}a_{2}^{2}l_{2}^{2} \right)
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\dfrac{d}{dt}\dfrac{\partial K\left( \mathbf{q},\dot{\mathbf{q}} \right)}{\partial\dot{\mathbf{q}}} = \begin{bmatrix}
+{\ddot{\theta}}_{1}(*) + {\ddot{\theta}}_{2}(*) - 2m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}{\dot{\theta}}_{2} - m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{2}^{2} \\
+{\ddot{\theta}}_{1}(*) + {\ddot{\theta}}_{2}(*) - m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}{\dot{\theta}}_{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[- \dfrac{\partial K\left( \mathbf{q},\dot{\mathbf{q}} \right)}{\partial\mathbf{q}} = \begin{bmatrix}
+0 \\
+m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}\left( {\dot{\theta}}_{1} + {\dot{\theta}}_{2} \right)
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\dfrac{\partial U\left( \mathbf{q} \right)}{\partial\mathbf{q}} = \begin{bmatrix}
+m_{1}a_{1}l_{1}c_{1}g + m_{2}l_{1}c_{1}g + m_{2}a_{2}l_{2}c_{12}g \\
+m_{2}a_{2}l_{2}c_{12}g
+\end{bmatrix}\]</span></p>
+<h5>3) Equations of Motion</h5>
+<p><span class="math display">\[M\left( \mathbf{q} \right) = \begin{bmatrix}
+I_{zz1} + I_{zz2} + m_{1}a_{1}^{2}l_{1}^{2} + m_{2}l_{1}^{2} + m_{2}a_{2}^{2}l_{2}^{2} + 2m_{2}a_{2}l_{1}l_{2}c_{2} &amp; I_{zz2} + m_{2}a_{2}^{2}l_{2}^{2} + m_{2}a_{2}l_{1}l_{2}c_{2} \\
+I_{zz2} + m_{2}a_{2}^{2}l_{2}^{2} + m_{2}a_{2}l_{1}l_{2}c_{2} &amp; I_{zz2} + m_{2}a_{2}^{2}l_{2}^{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[C\left( \mathbf{q,}\dot{\mathbf{q}} \right) = \begin{bmatrix}
+ - 2m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}{\dot{\theta}}_{2} - m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{2}^{2} \\
+m_{2}a_{2}l_{1}l_{2}s_{2}{\dot{\theta}}_{1}^{2}
+\end{bmatrix}\]</span></p>
+<p><span class="math display">\[G\left( \mathbf{q} \right) = \begin{bmatrix}
+m_{1}a_{1}l_{1}c_{1}g + m_{2}l_{1}c_{1}g + m_{2}a_{2}l_{2}c_{12}g \\
+m_{2}a_{2}l_{2}c_{12}g
+\end{bmatrix}\]</span></p>
+
+    </div>
+  </section>
+
+  <section id="page-knowledge-robot-control" class="page">
+    <h2>Expertise &mdash; Robot Control</h2>
+    <p>Add your notes on robot control here: joint-space vs. task-space control, PID, computed-torque
+       control, impedance control, trajectory tracking, etc.</p>
+  </section>
+
+  <section id="page-knowledge-reinforcement-learning" class="page">
+    <h2>Expertise &mdash; Reinforcement Learning</h2>
+    <p>Add your notes on reinforcement learning here: MDPs, value/policy iteration, Q-learning,
+       policy gradients, actor-critic methods, applications to robotics, etc.</p>
+  </section>
+
+  <section id="page-knowledge-python" class="page">
+    <h2>Expertise &mdash; Python</h2>
+    <p>Add your notes on Python here: libraries you use (NumPy, PyTorch, ROS, etc.), tooling, and
+       example projects or snippets.</p>
+  </section>
+
+  <section id="page-knowledge-control" class="page">
+    <h2>Expertise &mdash; Control</h2>
+    <p>Add your notes on control theory here: classical control, state-space methods, optimal control,
+       stability analysis, etc.</p>
+  </section>
+
+  <section id="page-research-robotics" class="page">
+    <h2>Research &mdash; Robotics</h2>
+    <p>Describe your robotics research projects here: goals, methods, and outcomes.</p>
+  </section>
+
+  <section id="page-research-image-processing" class="page">
+    <h2>Research &mdash; Image Processing</h2>
+    <p>Describe your image processing research projects here.</p>
+  </section>
+
+  <section id="page-research-control" class="page">
+    <h2>Research &mdash; Control</h2>
+    <p>Describe your control-related research projects here.</p>
+  </section>
+
+  <section id="page-publications" class="page">
+    <h2>Publications</h2>
+    <ul class="pub-list">
+      <li>Add your publications here, e.g.: Author(s), "Title," <em>Venue</em>, Year.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Ting-Hao Liu</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

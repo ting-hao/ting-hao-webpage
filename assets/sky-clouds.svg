@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4f9fe0"/>
+      <stop offset="55%" stop-color="#7fc1ef"/>
+      <stop offset="100%" stop-color="#bfe3f7"/>
+    </linearGradient>
+    <filter id="soften" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="300" fill="url(#sky)"/>
+
+  <!-- cloud 1 -->
+  <g filter="url(#soften)" opacity="0.95">
+    <ellipse cx="160" cy="150" rx="95" ry="34" fill="#ffffff"/>
+    <ellipse cx="220" cy="130" rx="70" ry="40" fill="#ffffff"/>
+    <ellipse cx="100" cy="135" rx="60" ry="32" fill="#ffffff"/>
+    <ellipse cx="270" cy="155" rx="55" ry="26" fill="#ffffff"/>
+  </g>
+
+  <!-- cloud 2 -->
+  <g filter="url(#soften)" opacity="0.92">
+    <ellipse cx="560" cy="80" rx="80" ry="28" fill="#ffffff"/>
+    <ellipse cx="610" cy="65" rx="55" ry="30" fill="#ffffff"/>
+    <ellipse cx="510" cy="70" rx="50" ry="24" fill="#ffffff"/>
+  </g>
+
+  <!-- cloud 3 (large, center-right) -->
+  <g filter="url(#soften)" opacity="0.95">
+    <ellipse cx="980" cy="190" rx="120" ry="40" fill="#ffffff"/>
+    <ellipse cx="1060" cy="165" rx="85" ry="46" fill="#ffffff"/>
+    <ellipse cx="900" cy="175" rx="70" ry="36" fill="#ffffff"/>
+    <ellipse cx="1130" cy="195" rx="60" ry="28" fill="#ffffff"/>
+  </g>
+
+  <!-- cloud 4 -->
+  <g filter="url(#soften)" opacity="0.9">
+    <ellipse cx="1320" cy="90" rx="70" ry="24" fill="#ffffff"/>
+    <ellipse cx="1365" cy="75" rx="48" ry="26" fill="#ffffff"/>
+    <ellipse cx="1280" cy="80" rx="42" ry="20" fill="#ffffff"/>
+  </g>
+
+  <!-- cloud 5 (small, top-left corner) -->
+  <g filter="url(#soften)" opacity="0.85">
+    <ellipse cx="1460" cy="230" rx="65" ry="22" fill="#ffffff"/>
+    <ellipse cx="1500" cy="215" rx="42" ry="24" fill="#ffffff"/>
+  </g>
+</svg>

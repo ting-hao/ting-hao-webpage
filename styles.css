@@ -1,0 +1,348 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #222;
+  background: #eaf4fb url("assets/page-background.jpg") center top / cover no-repeat fixed;
+  font-size: 16px;
+}
+
+/* Type scale: every element at a given level shares one size site-wide. */
+main p,
+main li,
+main td,
+main th,
+main blockquote {
+  font-size: 1rem;
+}
+
+.page h2 {
+  font-size: 1.75rem;
+}
+
+.docx-content h3 {
+  font-size: 1.35rem;
+}
+
+.docx-content h4 {
+  font-size: 1.1rem;
+}
+
+.docx-content h5 {
+  font-size: 0.85rem;
+}
+
+header {
+  padding: 1.25rem 2rem 0 2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.6s ease;
+}
+
+header.sky-daytime {
+  background-image: url("assets/sky-clouds-photo.jpg");
+  background-color: #7fc1ef;
+}
+
+header.sky-evening {
+  background-image: url("assets/sky-evening-photo.jpg");
+  background-color: #d9608a;
+}
+
+header.sky-night {
+  background-image: url("assets/sky-night-photo.jpg");
+  background-color: #0b1736;
+}
+
+header.sky-morning {
+  background-image: url("assets/sky-morning-photo.jpg");
+  background-color: #f3c6d3;
+}
+
+header.sky-daytime .site-title,
+header.sky-evening .site-title,
+header.sky-morning .site-title,
+header.sky-daytime .nav-link,
+header.sky-evening .nav-link,
+header.sky-morning .nav-link {
+  color: #1f2a44;
+  text-shadow: 0 1px 4px rgba(255,255,255,0.65);
+}
+
+header.sky-night .site-title,
+header.sky-night .nav-link {
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+.site-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.6rem;
+}
+
+header.sky-daytime nav,
+header.sky-evening nav,
+header.sky-morning nav {
+  border-top: 1px solid rgba(31,42,68,0.25);
+}
+
+header.sky-night nav {
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  padding: 0.9rem 1.25rem;
+  font-weight: 600;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background: rgba(255,255,255,0.4);
+  border-radius: 4px;
+}
+
+.dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #2c3a5e;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  z-index: 10;
+}
+
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  white-space: nowrap;
+}
+
+.dropdown li a:hover,
+.dropdown li a:focus {
+  background: rgba(255,255,255,0.15);
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem 1.75rem;
+  min-height: 60vh;
+  background: rgba(255,255,255,0.92);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(20,40,70,0.12);
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.page h2 {
+  border-bottom: 3px solid #1f2a44;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.gallery figure {
+  margin: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.gallery img {
+  width: 100%;
+  display: block;
+}
+
+.gallery figcaption {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.pub-list {
+  padding-left: 1.25rem;
+  line-height: 1.7;
+}
+
+.docx-content h3 {
+  margin-top: 2.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e0e0e0;
+  color: #1f2a44;
+  scroll-margin-top: 1.5rem;
+}
+
+.docx-content h3:first-of-type {
+  border-top: none;
+}
+
+.docx-content h4 {
+  margin-top: 2rem;
+  color: #2c3a5e;
+  scroll-margin-top: 1.5rem;
+}
+
+.docx-content h5 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.4rem;
+  color: #44506e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-left: 3px solid #c7cce0;
+  padding-left: 0.6rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.docx-content p,
+.docx-content li {
+  line-height: 1.75;
+}
+
+.docx-content .lead {
+  color: #333;
+  max-width: 65ch;
+}
+
+.docx-content .toc {
+  background: #f3f4f7;
+  border: 1px solid #dde0e8;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.docx-content .toc ol {
+  margin: 0.25rem 0;
+}
+
+.docx-content .toc a {
+  color: #1f2a44;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.docx-content .toc a:hover {
+  text-decoration: underline;
+}
+
+.docx-content .example-label {
+  font-weight: 600;
+  color: #1f2a44;
+  margin-top: 1.25rem;
+}
+
+.docx-content figure {
+  margin: 1.5rem auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem;
+  max-width: 100%;
+}
+
+.docx-content figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.docx-content figcaption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.4rem;
+}
+
+.docx-content blockquote {
+  border-left: 3px solid #1f2a44;
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  color: #444;
+  background: #f3f4f7;
+}
+
+.docx-content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.docx-content table th,
+.docx-content table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+.docx-content table th {
+  background: #eef0f5;
+}
+
+.docx-content mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin: 1rem auto 0;
+  max-width: 900px;
+  color: #444;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+}
