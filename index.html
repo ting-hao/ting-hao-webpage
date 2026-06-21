@@ -112,7 +112,7 @@
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}\quad(1)
 \end{array}\]</span></p>
-<h4>B. Modified Denavit&ndash;Hartenberg Parameters</h4>
+<h4 id="fk-modified-dh-parameters">B. Modified Denavit&ndash;Hartenberg Parameters</h4>
 <figure>
 <img src="Knowledge/media/media/image2.jpeg" style="width:3.525in;height:2.53617in" />
 <figcaption>Fig. 2: Modified Denavit&ndash;Hartenberg kinematic parameters</figcaption>
@@ -240,7 +240,7 @@ r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
 <p><span class="math display">\[c_{1} = \cos\left( \theta_{1} \right),\ s_{1} = \sin\left( \theta_{1} \right)\]</span></p>
 <h3 id="inverse-kinematics">Inverse Kinematics</h3>
 <p>Inverse kinematics maps a desired end-effector position in Cartesian coordinates to the corresponding robot joint angles, so that the joint commands needed to reach a target pose can be computed directly.</p>
-<h4>A. Geometric Solution</h4>
+<h4 id="ik-geometric-solution">A. Geometric Solution</h4>
 <p>Decompose the spatial geometry into a set of planar sub-problems.</p>
 <p class="example-label">Example: (RRR manipulator)</p>
 <figure>
@@ -271,7 +271,7 @@ r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
 <p><span class="math display">\[\begin{array}{r}
 \theta_{2} = \alpha + \beta = atan2\left( z_{d} - L_{1} - L_{2},\sqrt{x_{d}^{2} + y_{d}^{2}} \right) + atan2\left( \pm \sqrt{1 - \cos^{2}(\beta)},\cos(\beta) \right)\quad(6)
 \end{array}\]</span></p>
-<h4>B. Algebraic Solution (Pieper's Method)</h4>
+<h4 id="ik-algebraic-solution">B. Algebraic Solution (Pieper's Method)</h4>
 <p class="example-label">Example: (PUMA 560)</p>
 <p>Consider the forward kinematics <span class="math inline">\(\mkern-3mu_{6}^{0}\mkern1.5muT = \begin{bmatrix}
 r_{11} &amp; r_{12} &amp; r_{13} &amp; p_{x} \\
@@ -456,7 +456,7 @@ c_{6} &amp; - s_{6} &amp; 0 &amp; * \\
 <p>The Jacobian matrix maps the joint velocities to the end effector's linear and angular velocity:</p>
 <p><span class="math display">\[\dot{\mathbf{x}} = J(\mathbf{q})\dot{\mathbf{q}}\]</span></p>
 <p>where <span class="math inline">\(\dot{\mathbf{x}} \in \mathbb{R}^{6 \times 1}\)</span> denotes the end effector's linear and angular velocity in three-dimensional space, and <span class="math inline">\(\dot{\mathbf{q}} \in \mathbb{R}^{n \times 1}\)</span> denotes the velocity vector of the <span class="math inline">\(n\)</span> robot joints.</p>
-<h4>A. Velocity Propagation Method</h4>
+<h4 id="jac-velocity-propagation">A. Velocity Propagation Method</h4>
 <figure>
 <img src="Knowledge/media/media/image7.jpeg" style="width:3.22917in;height:1.95671in" />
 <figcaption>Fig. 7: Kinematics</figcaption>
