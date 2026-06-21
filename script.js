@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   var links = document.querySelectorAll("[data-page]");
   var pages = document.querySelectorAll(".page");
+  var mainEl = document.querySelector("main");
+  var widePages = ["knowledge-robotics"];
 
   function showPage(pageId) {
     pages.forEach(function (page) {
@@ -9,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     links.forEach(function (link) {
       link.classList.toggle("active-link", link.getAttribute("data-page") === pageId);
     });
+    mainEl.classList.toggle("wide-page", widePages.indexOf(pageId) !== -1);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
