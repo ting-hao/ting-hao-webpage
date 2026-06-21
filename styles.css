@@ -365,6 +365,21 @@ main {
   max-width: 100%;
 }
 
+.docx-content p:has(> .eq-tag) {
+  position: relative;
+  padding-right: 3rem;
+}
+
+.docx-content .eq-tag {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5c6b7d;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
 footer {
   text-align: center;
   padding: 1.5rem;
