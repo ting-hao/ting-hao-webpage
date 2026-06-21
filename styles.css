@@ -51,7 +51,7 @@ header {
 .visit-counter {
   position: absolute;
   top: 0.6rem;
-  left: 0.6rem;
+  right: 0.6rem;
   display: flex;
   gap: 0.6rem;
   background: rgba(20,30,50,0.55);
