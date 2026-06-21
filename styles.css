@@ -240,9 +240,9 @@ main.wide-page {
 }
 
 .docx-content h3 {
-  margin-top: 2.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid #e0e0e0;
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #1f2a44;
   color: #1f2a44;
   scroll-margin-top: 1.5rem;
 }
@@ -252,7 +252,9 @@ main.wide-page {
 }
 
 .docx-content h4 {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #d8dde6;
   color: #2c3a5e;
   scroll-margin-top: 1.5rem;
 }
