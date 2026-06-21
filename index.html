@@ -264,18 +264,19 @@ r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
 <img src="Knowledge/media/media/image4.jpeg" style="width:3.14306in;height:2.55804in" />
 <figcaption>Fig. 4: RRR manipulator</figcaption>
 </figure>
-<p>From top view, the joint 1 angle <span class="math inline">\(\theta_{1}\)</span> can be calculated with desired position <span class="math inline">\(\left( x_{d},y_{d},z_{d} \right)\)</span>:</p>
+<p>From top view, the joint 1 angle <span class="math inline">\(\theta_{1}\)</span> can be calculated with desired position <span class="math inline">\(\left( x_{d},y_{d},z_{d} \right)\)</span>:; from side view, the joint 2 and 3 angle <span class="math inline">\(\theta_{2}\)</span>, <span class="math inline">\(\theta_{3}\)</span> can be calculated:</p>
+<div class="figure-row">
 <figure>
 <img src="Knowledge/media/media/image5.jpeg" style="width:2.60579in;height:2.30556in" />
 <figcaption>Fig. 5: Top view</figcaption>
 </figure>
-<p><span class="math display">\[\begin{array}{r}
-\theta_{1} = atan2\left( y_{d},x_{d} \right) \end{array}\]</span><span class="eq-tag">(4)</span></p>
-<p>From side view, the joint 2 and 3 angle <span class="math inline">\(\theta_{2}\)</span>, <span class="math inline">\(\theta_{3}\)</span> can be calculated:</p>
 <figure>
 <img src="Knowledge/media/media/image6.jpeg" style="width:3.27361in;height:2.30564in" />
 <figcaption>Fig. 6: Side view</figcaption>
 </figure>
+</div>
+<p><span class="math display">\[\begin{array}{r}
+\theta_{1} = atan2\left( y_{d},x_{d} \right) \end{array}\]</span><span class="eq-tag">(4)</span></p>
 <p><span class="math display">\[r = \sqrt{x_{d}^{2} + y_{d}^{2} + \left( z_{d} - L_{1} - L_{2} \right)^{2}}\]</span></p>
 <p><span class="math display">\[\cos\left( \theta_{3} \right) = \dfrac{r^{2} - L_{3}^{2} - L_{4}^{2}}{2L_{3}L_{4}}\]</span></p>
 <p><span class="math display">\[\sin\left( \theta_{3} \right) = \pm \sqrt{1 - \cos^{2}\left( \theta_{3} \right)}\]</span></p>
