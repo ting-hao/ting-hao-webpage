@@ -283,8 +283,8 @@ main.wide-page {
 
 .robotics-layout {
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 2rem;
   align-items: start;
 }
 
