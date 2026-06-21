@@ -328,6 +328,25 @@ main {
   height: auto;
 }
 
+.docx-content .figure-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.docx-content .figure-row figure {
+  flex: 1 1 240px;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.docx-content .figure-row img {
+  flex: 1;
+  object-fit: contain;
+}
+
 .docx-content figcaption {
   font-size: 0.9rem;
   color: #555;
