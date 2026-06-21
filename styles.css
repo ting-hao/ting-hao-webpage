@@ -186,6 +186,11 @@ main {
   background: rgba(255,255,255,0.92);
   border-radius: 10px;
   box-shadow: 0 6px 24px rgba(20,40,70,0.12);
+  transition: max-width 0.2s ease;
+}
+
+main.wide-page {
+  max-width: 1180px;
 }
 
 .page {
