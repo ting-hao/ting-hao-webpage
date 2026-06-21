@@ -274,13 +274,43 @@ main {
   max-width: 65ch;
 }
 
+.robotics-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.robotics-toc {
+  position: sticky;
+  top: 1rem;
+}
+
+.robotics-body {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .robotics-layout {
+    grid-template-columns: 1fr;
+  }
+  .robotics-toc {
+    position: static;
+  }
+}
+
 .docx-content .toc {
   background: #f3f4f7;
   border: 1px solid #dde0e8;
   border-radius: 6px;
-  padding: 0.75rem 1.5rem;
-  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  display: block;
   margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.robotics-toc .toc {
+  margin-bottom: 0;
 }
 
 .docx-content .toc ol {
