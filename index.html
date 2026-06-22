@@ -457,8 +457,8 @@ c_{6} &amp; - s_{6} &amp; 0 &amp; * \\
 \theta_{6} = atan2\left( s_{6},c_{6} \right) \end{array}\]</span><span class="eq-tag">(21)</span></p>
 <h3 id="jacobian">Jacobian</h3>
 <p>The Jacobian matrix maps the joint velocities to the end effector's linear and angular velocity:</p>
-<p><span class="math display">\[\dot{\mathbf{x}} = J(\mathbf{q})\dot{\mathbf{q}}\]</span></p>
-<p>where <span class="math inline">\(\dot{\mathbf{x}} \in \mathbb{R}^{6 \times 1}\)</span> denotes the end effector's linear and angular velocity in three-dimensional space, and <span class="math inline">\(\dot{\mathbf{q}} \in \mathbb{R}^{n \times 1}\)</span> denotes the velocity vector of the <span class="math inline">\(n\)</span> robot joints.</p>
+<p><span class="math display">\[\mathbf{v} = J(\mathbf{q})\dot{\mathbf{q}}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{v} \in \mathbb{R}^{6 \times 1}\)</span> denotes the end effector's linear and angular velocity in three-dimensional space, and <span class="math inline">\(\dot{\mathbf{q}} \in \mathbb{R}^{n \times 1}\)</span> denotes the velocity vector of the <span class="math inline">\(n\)</span> robot joints.</p>
 <h4 id="jac-velocity-propagation">A. Velocity Propagation Method</h4>
 <figure>
 <img src="Knowledge/media/media/image7.jpeg" style="width:3.22917in;height:1.95671in" />
