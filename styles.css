@@ -368,9 +368,12 @@ main.wide-page {
   max-width: 100%;
 }
 
-.docx-content figure img {
+.docx-content figure img,
+.docx-content figure video {
   max-width: 100%;
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .docx-content .figure-row {
