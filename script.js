@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var links = document.querySelectorAll("[data-page]");
   var pages = document.querySelectorAll(".page");
   var mainEl = document.querySelector("main");
-  var widePages = ["knowledge-robotics"];
+  var widePages = ["knowledge-robotics", "knowledge-robot-control"];
 
   function showPage(pageId) {
     pages.forEach(function (page) {
