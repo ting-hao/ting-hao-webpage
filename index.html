@@ -93,7 +93,7 @@
 <p>Forward kinematics maps a robot's joint-frame coordinates to a 3D Cartesian coordinate. A 4&times;4 homogeneous transformation matrix represents the rotation and translation between consecutive frames.</p>
 <h4 id="fk-dh-parameters">A. Denavit&ndash;Hartenberg Parameters</h4>
 <figure>
-<img src="Knowledge/media/media/image1.jpeg" style="width:3.05278in;height:2.15856in" />
+<img src="Knowledge/Robotics/media/media/image1.jpeg" style="width:3.05278in;height:2.15856in" />
 <figcaption>Fig. 1: Denavit&ndash;Hartenberg kinematic parameters</figcaption>
 </figure>
 <p>There are 4 steps to move from the frame of joint <span class="math inline">\(i - 1\)</span> to joint <span class="math inline">\(i\)</span>:</p>
@@ -136,7 +136,7 @@
 \end{bmatrix} \end{array}\]</span><span class="eq-tag">(1)</span></p>
 <h4 id="fk-modified-dh-parameters">B. Modified Denavit&ndash;Hartenberg Parameters</h4>
 <figure>
-<img src="Knowledge/media/media/image2.jpeg" style="width:3.525in;height:2.53617in" />
+<img src="Knowledge/Robotics/media/media/image2.jpeg" style="width:3.525in;height:2.53617in" />
 <figcaption>Fig. 2: Modified Denavit&ndash;Hartenberg kinematic parameters</figcaption>
 </figure>
 <p>There are 4 steps to move from the frame of joint <span class="math inline">\(i - 1\)</span> to joint <span class="math inline">\(i\)</span>:</p>
@@ -179,7 +179,7 @@ _{i}^{i - 1}\mkern1.5muT = \begin{bmatrix}
 \end{bmatrix} \end{array}\]</span><span class="eq-tag">(2)</span></p>
 <p class="example-label">Example: (PUMA 560)</p>
 <figure>
-<img src="Knowledge/media/media/image3.jpeg" style="width:3.41975in;height:4.06944in" />
+<img src="Knowledge/Robotics/media/media/image3.jpeg" style="width:3.41975in;height:4.06944in" />
 <figcaption>Fig. 3: PUMA 560</figcaption>
 </figure>
 <p>Step 1: Define all joints on the z-axis, and define x-axis according to the robot geometry.</p>
@@ -264,17 +264,17 @@ r_{31} &amp; r_{32} &amp; r_{33} &amp; p_{z} \\
 <p>Decompose the spatial geometry into a set of planar sub-problems.</p>
 <p class="example-label">Example: (RRR manipulator)</p>
 <figure>
-<img src="Knowledge/media/media/image4.jpeg" style="width:3.14306in;height:2.55804in" />
+<img src="Knowledge/Robotics/media/media/image4.jpeg" style="width:3.14306in;height:2.55804in" />
 <figcaption>Fig. 4: RRR manipulator</figcaption>
 </figure>
 <p>From the top view, the joint 1 angle <span class="math inline">\(\theta_{1}\)</span> can be calculated with desired position <span class="math inline">\(\left( x_{d},y_{d},z_{d} \right)\)</span>. From the side view, the joint 2 and 3 angles <span class="math inline">\(\theta_{2}\)</span>, <span class="math inline">\(\theta_{3}\)</span> can be calculated:</p>
 <div class="figure-row">
 <figure>
-<img src="Knowledge/media/media/image5.jpeg" style="width:2.60579in;height:2.30556in" />
+<img src="Knowledge/Robotics/media/media/image5.jpeg" style="width:2.60579in;height:2.30556in" />
 <figcaption>Fig. 5: Top view</figcaption>
 </figure>
 <figure>
-<img src="Knowledge/media/media/image6.jpeg" style="width:3.27361in;height:2.30564in" />
+<img src="Knowledge/Robotics/media/media/image6.jpeg" style="width:3.27361in;height:2.30564in" />
 <figcaption>Fig. 6: Side view</figcaption>
 </figure>
 </div>
@@ -461,7 +461,7 @@ c_{6} &amp; - s_{6} &amp; 0 &amp; * \\
 <p>where <span class="math inline">\(\mathbf{v} \in \mathbb{R}^{6 \times 1}\)</span> denotes the end effector's linear and angular velocity in three-dimensional space, and <span class="math inline">\(\dot{\mathbf{q}} \in \mathbb{R}^{n \times 1}\)</span> denotes the velocity vector of the <span class="math inline">\(n\)</span> robot joints.</p>
 <h4 id="jac-velocity-propagation">A. Velocity Propagation Method</h4>
 <figure>
-<img src="Knowledge/media/media/image7.jpeg" style="width:3.22917in;height:1.95671in" />
+<img src="Knowledge/Robotics/media/media/image7.jpeg" style="width:3.22917in;height:1.95671in" />
 <figcaption>Fig. 7: Kinematics</figcaption>
 </figure>
 <h5>Rotational Joint</h5>
@@ -480,7 +480,7 @@ _{}^{i + 1}\mkern1.5mu\mathbf{\omega}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5mu
 _{}^{i + 1}\mkern1.5mu\mathbf{v}_{i + 1} =\mkern-3mu_{i}^{i + 1}\mkern1.5muR\left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{v}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{i + 1} \right) + {\dot{d}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1} \end{array}\]</span><span class="eq-tag">(25)</span></p>
 <p class="example-label">Example: (Planar RR manipulator)</p>
 <figure>
-<img src="Knowledge/media/media/image8.jpeg" style="width:2.71909in;height:2.37601in" />
+<img src="Knowledge/Robotics/media/media/image8.jpeg" style="width:2.71909in;height:2.37601in" />
 <figcaption>Fig. 8: Planar RR manipulator</figcaption>
 </figure>
 <p><span class="math display">\[\begin{array}{r}
@@ -755,7 +755,7 @@ _{}^{i + 1}\mkern1.5mu\mathbf{a}_{i + 1} = \\
 \mkern-3mu_{i}^{i + 1}\mkern1.5muR\left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{a}_{i} +\mkern-3mu_{}^{i}\mkern1.5mu{\dot{\mathbf{\omega}}}_{i} \times_{}^{i}\mathbf{P}_{i + 1} +\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times \left(\mkern-3mu_{}^{i}\mkern1.5mu\mathbf{\omega}_{i} \times_{}^{i}\mathbf{P}_{i + 1} \right) \right) + 2\mkern-3mu_{i}^{i + 1}\mkern1.5muR_{}^{i}\mathbf{\omega}_{i} \times {\dot{d}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1} + {\ddot{d}}_{i + 1}{}_{}^{i + 1}{\widehat{\mathbf{z}}}_{i + 1} \end{array}\]</span><span class="eq-tag">(36)</span></p>
 <p>Linear acceleration on center of mass (COM):</p>
 <figure>
-<img src="Knowledge/media/media/image9.jpeg" style="width:3.67083in;height:1.75145in" />
+<img src="Knowledge/Robotics/media/media/image9.jpeg" style="width:3.67083in;height:1.75145in" />
 <figcaption>Fig. 9: Newton&ndash;Euler dynamics</figcaption>
 </figure>
 <p><span class="math display">\[\begin{array}{r}
