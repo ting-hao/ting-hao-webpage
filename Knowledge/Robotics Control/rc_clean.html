@@ -254,13 +254,13 @@ R_{d}^{T} &amp; 0 \\
 <h2 id="parallel-forceposition-control">Parallel force/position control</h2>
 <p><span class="math display">\[\begin{array}{r}
 \mathbf{u} = B\left( \mathbf{q} \right)\mathbf{y} + n\left( \mathbf{q,}\dot{\mathbf{q}} \right) \end{array}\]</span><span class="eq-tag">(21)</span></p>
+<p><span class="math display">\[\begin{array}{r}
+\mathbf{y} = J^{- 1}\left( \mathbf{q} \right)M_{d}^{- 1}\left( K_{d}\dot{\mathbf{x}} + K_{p}\left( \widetilde{\mathbf{x}} + \mathbf{x}_{F} \right) - M_{d}{\dot{J}}_{A}\left( \mathbf{q},\widetilde{\mathbf{x}},\dot{\mathbf{q}},\dot{\widetilde{\mathbf{x}}} \right)\dot{\mathbf{q}} \right) \end{array}\]</span><span class="eq-tag">(22)</span></p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image15.png" style="width:5.26806in;height:1.32626in" />
-<figcaption><p><span class="math display">\[\begin{array}{r}
-\mathbf{y} = J^{- 1}\left( \mathbf{q} \right)M_{d}^{- 1}\left( K_{d}\dot{\mathbf{x}} + K_{p}\left( \widetilde{\mathbf{x}} + \mathbf{x}_{F} \right) - M_{d}{\dot{J}}_{A}\left( \mathbf{q},\widetilde{\mathbf{x}},\dot{\mathbf{q}},\dot{\widetilde{\mathbf{x}}} \right)\dot{\mathbf{q}} \right) \end{array}\]</span><span class="eq-tag">(22)</span></p></figcaption>
+<figcaption>Fig. 15: Block diagram of parallel force/position control. <span class="math inline">\(\mathbf{f}_{d}\)</span> is the desired force, and <span class="math inline">\(C_{F}\)</span> is a PI controller.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image16.png" style="width:4.96719in;height:1.87986in" />
-<figcaption><p>Fig. 15: Block diagram of parallel force/position control. <span class="math inline">\(\mathbf{f}_{d}\)</span> is the desired force, and <span class="math inline">\(C_{F}\)</span> is a PI controller.</p></figcaption>
+<figcaption>Fig. 16: Position and force tracking Matlab simulation.</figcaption>
 </figure>
-<p>Fig. 16: Position and force tracking Matlab simulation.</p>
