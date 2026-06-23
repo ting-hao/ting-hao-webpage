@@ -31,7 +31,7 @@ B\left( \mathbf{q} \right)\ddot{\mathbf{q}} + C\left( \mathbf{q,}\dot{\mathbf{q}
 <p>In this section, we’re going to use Matlab to simulate some of the controllers on IRISS v2 robot used for robotic eye surgery.</p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image1.png" style="width:4.66042in;height:2.08681in" />
-<figcaption><p>Fig. 1: IRISS v2 robot.</p></figcaption>
+<figcaption>Fig. 1: IRISS v2 robot.</figcaption>
 </figure>
 <h1 id="joint-space-control">Joint Space Control</h1>
 <h2 id="pd-control-with-gravity-compensation">PD control with gravity compensation</h2>
@@ -41,11 +41,11 @@ B\left( \mathbf{q} \right)\ddot{\mathbf{q}} + C\left( \mathbf{q,}\dot{\mathbf{q}
 <p>Where <span class="math inline">\(\mathbf{q}_{d}\)</span> is desired joint position. Since there is only joint position command in this controller, it’s usually used for pose maintenance.</p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image2.png" style="width:3.16042in;height:1.40478in" />
-<figcaption><p>Fig. 2: Block diagram of PD control with gravity compensation.</p></figcaption>
+<figcaption>Fig. 2: Block diagram of PD control with gravity compensation.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image3.png" style="width:2.79167in;height:2.09358in" />
-<figcaption><p>Fig. 3: Joint position tracking Matlab simulation.</p></figcaption>
+<figcaption>Fig. 3: Joint position tracking Matlab simulation.</figcaption>
 </figure>
 <h2 id="inverse-dynamics-control-computed-torque-control">Inverse dynamics control (Computed torque control)</h2>
 <p>Based on the robot dynamics model and the double integrator relationship, inverse dynamics control can achieve trajectory following with desired joint position, velocity and acceleration command.</p>
@@ -58,15 +58,15 @@ B\left( \mathbf{q} \right)\ddot{\mathbf{q}} + C\left( \mathbf{q,}\dot{\mathbf{q}
 <p>Where <span class="math inline">\(\mathbf{q}_{d}\)</span> is desired joint position, <span class="math inline">\({\dot{\mathbf{q}}}_{d}\)</span> is desired joint velocity, and <span class="math inline">\({\ddot{\mathbf{q}}}_{d}\)</span> is desired joint acceleration.</p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image4.png" style="width:3.60417in;height:1.553in" />
-<figcaption><p>Fig. 4: Block diagram of inverse dynamics control.</p></figcaption>
+<figcaption>Fig. 4: Block diagram of inverse dynamics control.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image5.png" style="width:5.20833in;height:1.95394in" />
-<figcaption><p>Fig. 5: Joint position and velocity tracking Matlab simulation.</p></figcaption>
+<figcaption>Fig. 5: Joint position and velocity tracking Matlab simulation.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image6.png" style="width:4.9875in;height:1.8693in" />
-<figcaption><p>Fig. 6: Joint position and velocity tracking Matlab simulation with model uncertainty.</p></figcaption>
+<figcaption>Fig. 6: Joint position and velocity tracking Matlab simulation with model uncertainty.</figcaption>
 </figure>
 <p>Although inverse dynamics control works perfectly while the estimated model matches the actual robot dynamics, the tracking performance decreases when they’re not the same.</p>
 <h2 id="robust-control">Robust control</h2>
@@ -182,11 +182,11 @@ I &amp; 0 \\
 <p>Where <span class="math inline">\(\mathbf{x}_{d}\)</span> is desired position and orientation in operational space.</p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image7.png" style="width:4in;height:1.90869in" />
-<figcaption><p>Fig. 7: Block diagram of PD control with gravity compensation in operational space.</p></figcaption>
+<figcaption>Fig. 7: Block diagram of PD control with gravity compensation in operational space.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image8.png" style="width:5.53611in;height:2.07604in" />
-<figcaption><p>Fig. 8: Position and pose represented in XYX Euler angle tracking Matlab simulation.</p></figcaption>
+<figcaption>Fig. 8: Position and pose represented in XYX Euler angle tracking Matlab simulation.</figcaption>
 </figure>
 <h2 id="inverse-dynamics-control">Inverse dynamics control</h2>
 <p><span class="math display">\[\begin{array}{r}
@@ -197,15 +197,15 @@ I &amp; 0 \\
 <p>Where <span class="math inline">\(\mathbf{x}_{d}\)</span> is desired position and orientation, and <span class="math inline">\({\dot{\mathbf{x}}}_{d}\)</span>/<span class="math inline">\({\ddot{\mathbf{x}}}_{d}\)</span> is desired velocity/acceleration and angular velocity/acceleration in operational space.</p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image9.png" style="width:4.81944in;height:2.37122in" />
-<figcaption><p>Fig. 9: Block diagram of inverse dynamics control in operational space.</p></figcaption>
+<figcaption>Fig. 9: Block diagram of inverse dynamics control in operational space.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image10.png" style="width:5.02083in;height:1.88725in" />
-<figcaption><p>Fig. 10: Position and pose tracking Matlab simulation.</p></figcaption>
+<figcaption>Fig. 10: Position and pose tracking Matlab simulation.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image11.png" style="width:4.75263in;height:1.79167in" />
-<figcaption><p>Fig. 11: Velocity and angular velocity tracking Matlab simulation.</p></figcaption>
+<figcaption>Fig. 11: Velocity and angular velocity tracking Matlab simulation.</figcaption>
 </figure>
 <h1 id="force-control">Force Control</h1>
 <p>Now, we start to consider the force exerted from the robot to the environment <span class="math inline">\(\mathbf{h}\)</span>, and the robot dynamics can be written as:</p>
@@ -240,15 +240,15 @@ R_{d}^{T} &amp; 0 \\
 <p><span class="math display">\[M_{d}\ddot{\widetilde{\mathbf{x}}} + K_{d}\dot{\widetilde{\mathbf{x}}} + K_{p}\widetilde{\mathbf{x}} = \mathbf{h}^{d}\]</span></p>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image12.png" style="width:4.23542in;height:1.58419in" />
-<figcaption><p>Fig. 12: Block diagram of impedance control. <span class="math inline">\(\mathbf{x}_{r}\)</span> can be a reference point, line or plane. <span class="math inline">\(K\)</span> is the spring constant of the environment.</p></figcaption>
+<figcaption>Fig. 12: Block diagram of impedance control. <span class="math inline">\(\mathbf{x}_{r}\)</span> can be a reference point, line or plane. <span class="math inline">\(K\)</span> is the spring constant of the environment.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image13.png" style="width:5.13368in;height:1.9375in" />
-<figcaption><p>Fig. 13: Position and velocity tracking Matlab simulation.</p></figcaption>
+<figcaption>Fig. 13: Position and velocity tracking Matlab simulation.</figcaption>
 </figure>
 <figure>
 <img src="Knowledge/Robotics Control/media/media/image14.png" style="width:5.15069in;height:1.93526in" />
-<figcaption><p>Fig. 14: Position and velocity tracking Matlab simulation with exerting 100 N force along z-axis.</p></figcaption>
+<figcaption>Fig. 14: Position and velocity tracking Matlab simulation with exerting 100 N force along z-axis.</figcaption>
 </figure>
 <p>When the end-effector exerts a constant force along positive z-axis, which means there might be an obstacle near the desired position, its position has never reached the desired value. In other words, the end-effector gently touched the obstacle instead of colliding into that violently to reach the target.</p>
 <h2 id="parallel-forceposition-control">Parallel force/position control</h2>
